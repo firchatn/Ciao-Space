@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ciao Space</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+</head>
+<body>
+<div id="f" style=" text-align: center;">
+
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+
+
+<ul class="nav nav-pills nav-stacked">
+  <li role="presentation" class="active"><a href="/space/{{ t }}/">Home</a></li>
+  <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+  <li role="presentation"><a href="#">Post</a></li>
+</ul>
+</div>
+</div>
+
+
+<form role="form"  action="" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post</button>
+</form>
+<h3 style="color: red"> Post :</h3>
+
+{% for i in postt %}
+
+<!--
+<table style="width:100%" >
+  <tr>
+    <th style="text-align: center;">Username</th>
+    <th>Title</th> 
+    <th>About now</th>
+    <th>Date </th>
+  </tr>
+  <tr>
+    <td>{{ i.username }}</td>
+    <td>{{ i.title}}</td>
+    <td>{{ i.aboutnow}}</td>
+    <td>{{ i.post_date}}</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>80</td>
+  </tr>
+</table>
+-->
+
+
+
+
+<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
+<strong>title :</strong> {{ i.title }} 
+ <strong> about now : </strong>{{ i.aboutnow }}</p>
+  <strong> poster le : </strong>{{ i.post_date }}</p>
+{% endfor %}
+
+</div>
+</body>
+</html>
