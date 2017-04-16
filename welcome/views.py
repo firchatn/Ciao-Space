@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from singup.forms import usersForms
 
-
-
-
 def isuser():
 	return False
 
