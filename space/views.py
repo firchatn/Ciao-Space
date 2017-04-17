@@ -45,6 +45,13 @@ def contrainer(request, x):
 		n = float(d.y)
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
 			print d.username
+			f = users.objects.filter(username=d.username)
+			#fixe this by new template for echtach profil 
+			#load bloc in index 
+
+
+			
+
 	return render(request, 'space/index.html', {'vuser':usee , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
 
 def profil(request,t, userspace):
