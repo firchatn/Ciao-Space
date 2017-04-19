@@ -39,20 +39,21 @@ def contrainer(request, x):
 	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
 	vx = float(cheekin_compte.x)
 	vy = float(cheekin_compte.y)
+	aux = []
 	print "list user in "
 	for d in cheekin_view:
 		m = float(d.x)
 		n = float(d.y)
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
 			print d.username
-			f = users.objects.filter(username=d.username)
+			f  =  users.objects.filter(username=d.username)
+			aux.append(f)
+			for j in f:
+				print f[0].name
 			#fixe this by new template for echtach profil 
 			#load bloc in index 
 
-
-			
-
-	return render(request, 'space/index.html', {'vuser':usee , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
+	return render(request, 'space/index.html', {'vuser':usee , 'vuser2':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
 
 def profil(request,t, userspace):
 	usee = users.objects.get(username=userspace)
@@ -77,3 +78,7 @@ def new_post(request, t, userspace):
 	t=t
 	postt = post.objects.all().order_by('-post_date')
 	return render(request, 'space/post.html', { 'form' : form , 'compte' : compte , 't' : t , 'postt' : postt })
+
+
+def message():
+	return True

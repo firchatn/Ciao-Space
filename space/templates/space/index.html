@@ -32,7 +32,9 @@
 
 <div class="container">
 {% for j in cheekin %}  
+{% if j.username != i.username %}
   {% for i in vuser %}
+  {% for k in vuser2 %}
   <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }}</a></h3>
   <h6> {{ j.cheek_date }} </h6>
   {% block content %}
@@ -41,6 +43,8 @@
   <h6> {{ j.x }} </h6>
   <h6> {{ j.y }} </h6>
   {% endfor %}
+  {% endfor %}
+  {% endif %}
   {% endfor %}
 </div>
 </div>
