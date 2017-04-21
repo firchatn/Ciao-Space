@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import post
 from .models import cheekin
+from .models import messages
 # Register your models here.
 
 
@@ -14,3 +15,4 @@ class cheekinAdmin(admin.ModelAdmin):
 
 admin.site.register(cheekin, cheekinAdmin)
 admin.site.register(post)
+admin.site.register(messages)

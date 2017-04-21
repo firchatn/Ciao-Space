@@ -17,3 +17,10 @@ class cheekin(models.Model):
 	cheek_date = models.DateTimeField('date cheek', auto_now_add=True, auto_now=False)
 	def __str__(self):
 		return str(self.username)
+
+class messages(models.Model):
+	toUser = models.ForeignKey(users, on_delete=models.CASCADE)
+	body = models.CharField(max_length=2000)
+	msg_date = models.DateTimeField('date cheek', auto_now_add=True, auto_now=False)
+	def __str__(self):
+		return str(self.toUser)

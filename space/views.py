@@ -48,8 +48,6 @@ def contrainer(request, x):
 			print d.username
 			f  =  users.objects.filter(username=d.username)
 			aux.append(f)
-			for j in f:
-				print f[0].name
 			#fixe this by new template for echtach profil 
 			#load bloc in index 
 
