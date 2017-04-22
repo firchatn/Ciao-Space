@@ -21,6 +21,7 @@ def contrainer(request, x):
 			newuser.email = form.cleaned_data["email"]
 			newuser.password = form.cleaned_data["password"]
 			newuser.selfi = form.cleaned_data["selfi"]
+			start_date = timezone.now()
 			newuser.save()
 			compte = users.objects.all()[users.objects.count()-1]
 			cheekin_v = cheekin()
@@ -44,12 +45,8 @@ def contrainer(request, x):
 		m = float(d.x)
 		n = float(d.y)
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
-			print d.username
 			f  =  users.objects.filter(username=d.username)
-			print f[0].selfi
 			aux.append(f)
-			#fixe this by new template for echtach profil 
-			#load bloc in index 
 	request.session[0] = 'login'
 
 	return render(request, 'space/index.html', {'vuser':usee , 'vuser2':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})

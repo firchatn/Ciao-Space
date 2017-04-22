@@ -9,5 +9,6 @@ class users(models.Model):
 	email = models.EmailField()
 	password = models.CharField(max_length=10)
 	selfi = models.ImageField(upload_to='upload/')
+	start_date = models.DateTimeField('date cheek', auto_now_add=True, auto_now=False)
 	def __str__(self):
 		return self.username

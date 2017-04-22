@@ -35,15 +35,12 @@
   {% for k in vuser2 %} 
   {% for i in k %} 
   <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }}</a></h3>
-  <h6> {{ j.cheek_date }} </h6>
   {% block content %}
   	<img src="{{ i.selfi.url }}" height="500" width="500">
   {% endblock %}
-  <h6> {{ j.x }} </h6>
-  <h6> {{ j.y }} </h6>
+  <h6> {{ i.start_date }} </h6>
   {% endfor %}
   {% endfor %}
- 
 </div>
 </div>
 </body>
