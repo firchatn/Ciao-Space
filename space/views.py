@@ -6,7 +6,7 @@ from space.models import post
 from django.utils import timezone
 from space.models import cheekin
 from decimal import *
-locx = ""
+locx = "" 
 locy = "" 
 vx = 0 
 vy = 0 
@@ -33,14 +33,12 @@ def contrainer(request, x):
 			cheekin_v.y = Decimal(locy)
 			cheekin_v.cheek_date = timezone.now()
 			cheekin_v.save()
-	usee = users.objects.all()
 	compte = users.objects.all()[users.objects.count()-1]
 	cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
 	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
 	vx = float(cheekin_compte.x)
 	vy = float(cheekin_compte.y)
-	aux = []
-	print "list user in "
+	aux = [] # user in space of 2km of your current compte 
 	for d in cheekin_view:
 		m = float(d.x)
 		n = float(d.y)
@@ -49,7 +47,7 @@ def contrainer(request, x):
 			aux.append(f)
 	request.session[0] = 'login'
 
-	return render(request, 'space/index.html', {'vuser':usee , 'vuser2':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
+	return render(request, 'space/index.html', {'vuser':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
 
 def profil(request,t, userspace):
 	usee = users.objects.get(username=userspace)
@@ -78,3 +76,6 @@ def new_post(request, t, userspace):
 
 def message():
 	return True
+
+def logout():
+	request.session[0] = 'logout'
