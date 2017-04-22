@@ -10,7 +10,7 @@ locx = ""
 locy = "" 
 vx = 0 
 vy = 0 
-def contrainer(request, x):
+def contrainer(request, urlloc):
 	if request.method == "POST":
 		form = usersForms(request.POST, request.FILES)
 		if form.is_valid():
@@ -34,7 +34,7 @@ def contrainer(request, x):
 			cheekin_v.cheek_date = timezone.now()
 			cheekin_v.save()
 	compte = users.objects.all()[users.objects.count()-1]
-	cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
+	#cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
 	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
 	vx = float(cheekin_compte.x)
 	vy = float(cheekin_compte.y)
@@ -46,17 +46,17 @@ def contrainer(request, x):
 			f  =  users.objects.filter(username=d.username)
 			aux.append(f)
 	request.session[0] = 'login'
+	return render(request, 'space/index.html', {'vuser':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : urlloc})
 
-	return render(request, 'space/index.html', {'vuser':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : x})
-
-def profil(request,t, userspace):
+def profil(request,urlloc, userspace):
 	usee = users.objects.get(username=userspace)
 	compte = users.objects.all()[users.objects.count()-1]
 	postt = post.objects.all()
-	return render(request, 'space/profil.html', {'vuser':usee , 'last':compte , 't':t , 'postt' : postt })
+	#f  =  post.objects.filter(username=userspace)
+	return render(request, 'space/profil.html', {'vuser':usee , 'last':compte , 't':urlloc , 'postt' : postt })
 
 
-def new_post(request, t, userspace):
+def new_post(request, urlloc, userspace):
 	if request.method == "POST":
 		form = post_forms(request.POST)
 		if form.is_valid():
@@ -69,9 +69,8 @@ def new_post(request, t, userspace):
 	else:
 		form = post_forms()
 	compte = users.objects.all()[users.objects.count()-1]
-	t=t
 	postt = post.objects.all().order_by('-post_date')
-	return render(request, 'space/post.html', { 'form' : form , 'compte' : compte , 't' : t , 'postt' : postt })
+	return render(request, 'space/post.html', { 'form' : form , 'compte' : compte , 't' : urlloc , 'postt' : postt })
 
 
 def message():
