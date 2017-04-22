@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from singup.forms import usersForms
 
-def isuser():
-	return False
+#def isuser(request):
+#	return request.session['status'] == "login"
 
 def startapp(request):
 	return render(request, 'welcome/home.html')
 
 def start(request, x):
 	if request.method == "POST":
-		if (isuser()):
+		request.session[0] = 'login'
+		if request.session[0] == "login":
 			return render(request, 'space/index.html')
 		else:
 			form_class = usersForms()
