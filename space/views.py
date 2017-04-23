@@ -45,7 +45,6 @@ def contrainer(request, urlloc):
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
 			f  =  users.objects.filter(username=d.username)
 			aux.append(f)
-	request.session[0] = 'login'
 	return render(request, 'space/index.html', {'vuser':aux , 'last':compte , 'cheekin' : cheekin_view , 'x' : urlloc})
 
 def profil(request,urlloc, userspace):
