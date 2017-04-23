@@ -27,22 +27,44 @@
 </div>
 </div>
 
+<style>
+#box1 {
+    width: 320px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 5px;
+    margin-left: 500px;
+    text-align: center;
+}
+label {
+    width: 320px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+}
+</style>
 
 <form role="form"  action="" method="post" enctype="multipart/form-data" >
+
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Post</button>
+    <button type="submit">Poster</button>
+   
 </form>
 <h3 style="color: red"> Post :</h3>
 
-{% for i in postt %}
 
-<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
-<strong>title :</strong> {{ i.title }} 
- <strong> about now : </strong>{{ i.aboutnow }}</p>
-  <strong> poster le : </strong>{{ i.post_date }}</p>
-{% endfor %}
 
 </div>
+{% for i in postt %}
+<div id ="box1">
+<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
+<strong>title :</strong> {{ i.title }} <br>
+ <strong> about now : </strong>{{ i.aboutnow }}</p>
+  <strong> poster le : </strong>{{ i.post_date }}</p>
+  </div>
+{% endfor %}
+
 </body>
 </html>

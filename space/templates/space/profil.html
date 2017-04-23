@@ -32,8 +32,16 @@
   {% endblock %}
 <h3>{{ vuser.username }}</h3>
 
-</div>
 
+
+</div>
+{% for i in postt %}
+
+<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
+<strong>title :</strong> {{ i.title }} 
+ <strong> about now : </strong>{{ i.aboutnow }}</p>
+  <strong> poster le : </strong>{{ i.post_date }}</p>
+{% endfor %}
 </div>
 </body>
 </html>

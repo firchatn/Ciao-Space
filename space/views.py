@@ -25,7 +25,7 @@ def contrainer(request, urlloc):
 			newuser.save()
 			compte = users.objects.all()[users.objects.count()-1]
 			cheekin_v = cheekin()
-			doc = x.split("a")
+			doc = urlloc.split("a")
 			locx=doc[0].replace("p",".")
 			locy=doc[1].replace("p",".")
 			cheekin_v.username = users.objects.get(username = compte.username)
@@ -34,7 +34,7 @@ def contrainer(request, urlloc):
 			cheekin_v.cheek_date = timezone.now()
 			cheekin_v.save()
 	compte = users.objects.all()[users.objects.count()-1]
-	#cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
+	cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
 	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
 	vx = float(cheekin_compte.x)
 	vy = float(cheekin_compte.y)
@@ -51,8 +51,7 @@ def contrainer(request, urlloc):
 def profil(request,urlloc, userspace):
 	usee = users.objects.get(username=userspace)
 	compte = users.objects.all()[users.objects.count()-1]
-	postt = post.objects.all()
-	#f  =  post.objects.filter(username=userspace)
+	postt = post.objects.all().order_by('-post_date')
 	return render(request, 'space/profil.html', {'vuser':usee , 'last':compte , 't':urlloc , 'postt' : postt })
 
 
@@ -76,5 +75,5 @@ def new_post(request, urlloc, userspace):
 def message():
 	return True
 
-def logout():
+def logout(request):
 	request.session[0] = 'logout'

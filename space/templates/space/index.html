@@ -17,13 +17,13 @@
         <div class="col-md-6 col-md-offset-3">
           <ul class="nav nav-pills nav-stacked">
             <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="{{ last.username }}/">{{ last.username }}</a></li>
+            <li role="presentation"><a href="{{ last.username }}/">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
             <li role="presentation"><a href="#">Messages</a></li>
             <li role="presentation"><a href="{{ last.username }}/post/">Post</a></li>
           </ul>
         </div>
       </div>
-    <h2>  welcome {{ last.username }} <i style="font-size:24px" class="fa">&#xf011;</i></h2>
+    <h2>  welcome {{ last.username }} <i class="fa fa-user-circle" aria-hidden="true"></i></h2>
     <div class="container">
       {% for k in vuser %} 
       {% for i in k %} 

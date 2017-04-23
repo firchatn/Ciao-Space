@@ -7,8 +7,8 @@ def startapp(request):
 
 def start(request, x):
 	if request.method == "POST":
-		
-		if request.session[0] == "login":
+		#if request.session[0] == "login":
+		if 1 == 2 :	
 			return render(request, 'space/index.html')
 		else:
 			form_class = usersForms()
