@@ -33,6 +33,7 @@
     margin-left: 400px;
     text-align: center;
     border-radius: 25px;
+    border-color: #FFE4C4;
 }
 label {
     width: 320px;
@@ -41,11 +42,23 @@ label {
     text-align: center;
 }
 h3 {
-  color: white ;
-  background-color: black;
+  color: #8B008B ;
+  background-color: #FFE4C4;
   width: 320px;
   text-align: center;
   margin-left: 400px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+#butPost {
+  border: 2px solid #a1a1a1;
+  border-radius: 50%;
+  background-color: #FF1493;
+  width: 100px;
+  height : 100px;
+  font-weight: bold;
+
+
 }
 </style>
 
@@ -53,7 +66,7 @@ h3 {
 
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">poster</button>
+    <button type="submit"  id ="butPost">poster</button>
    
 </form>
 <h3>POST</h3>
