@@ -19,7 +19,7 @@
           <ul class="nav nav-pills nav-stacked">
             <li role="presentation" class="active"><a href="#">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
             <li role="presentation"><a href="{{ last.username }}/">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-            <li role="presentation"><a href="#">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+            <li role="presentation"><a href="{{ last.username }}/message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
             <li role="presentation"><a href="{{ last.username }}/post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
           </ul>
         </div>
@@ -28,7 +28,7 @@
     <div class="container">
       {% for k in vuser %} 
       {% for i in k %} 
-      <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }}</a></h3>
+      <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }} </a></h3>
       {% block content %}
         <img src="{{ i.selfi.url }}" height="500" width="500">
       {% endblock %}

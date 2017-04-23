@@ -71,8 +71,21 @@ def new_post(request, urlloc, userspace):
 	return render(request, 'space/post.html', { 'form' : form , 'compte' : compte , 't' : urlloc , 'postt' : postt })
 
 
-def message():
-	return True
+def message(request, urlloc, userspace):
+	usee = users.objects.get(username=userspace)
+	compte = users.objects.all()[users.objects.count()-1]
+	cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
+	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
+	vx = float(cheekin_compte.x)
+	vy = float(cheekin_compte.y)
+	aux = [] 
+	for d in cheekin_view:
+		m = float(d.x)
+		n = float(d.y)
+		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
+			f  =  users.objects.filter(username=d.username)
+			aux.append(f)
+	return render(request, 'space/message.html', {'vuser':usee , 'last':compte , 't':urlloc , 'vuser2':aux })
 
 def logout(request):
 	request.session[0] = 'logout'
