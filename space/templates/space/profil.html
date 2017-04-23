@@ -13,12 +13,8 @@
 <body>
 <div class="container">
 <div id="f" style=" text-align: center;">
-
-
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
-
-
 <ul class="nav nav-pills nav-stacked">
   <li role="presentation" class="active"><a href="/space/{{ t }}/">Home</a></li>
   <li role="presentation"><a href="#">{{ last.username }}</a></li>
@@ -33,9 +29,8 @@
 <h3>{{ vuser.username }}</h3> 
 </div>
 {% for i in postt %}
-
 {% if i.username.username == vuser.username %}
-<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
+<!--<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a> -->
 <strong>title :</strong> {{ i.title }} 
  <strong> about now : </strong>{{ i.aboutnow }}</p>
   <strong> poster le : </strong>{{ i.post_date }}</p>

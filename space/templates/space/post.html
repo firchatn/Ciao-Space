@@ -11,13 +11,10 @@
   <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
 </head>
 <body>
+<div class="container">
 <div id="f" style=" text-align: center;">
-
-
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
-
-
 <ul class="nav nav-pills nav-stacked">
   <li role="presentation" class="active"><a href="/space/{{ t }}/">Home</a></li>
   <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}</a></li>
@@ -33,7 +30,7 @@
     padding: 10px;
     border: 5px solid gray;
     margin: 5px;
-    margin-left: 500px;
+    margin-left: 400px;
     text-align: center;
 }
 label {
@@ -42,6 +39,12 @@ label {
     margin: 0px;
     text-align: center;
 }
+h3 {
+  color: white ;
+  background-color: black;
+  width: 320px;
+  text-align: center;
+  margin-left: 400px;
 }
 </style>
 
@@ -49,10 +52,10 @@ label {
 
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Poster</button>
+    <button type="submit">poster</button>
    
 </form>
-<h3 style="color: red"> Post :</h3>
+<h3>POST</h3>
 
 
 
@@ -65,6 +68,6 @@ label {
   <strong> poster le : </strong>{{ i.post_date }}</p>
   </div>
 {% endfor %}
-
+</div>
 </body>
 </html>
