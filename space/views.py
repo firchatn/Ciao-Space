@@ -2,6 +2,7 @@ from django.shortcuts import render
 from singup.models import users
 from singup.forms import usersForms
 from space.forms import post_forms
+from space.forms import message_forms
 from space.models import post
 from space.models import messages
 from django.utils import timezone
@@ -86,11 +87,17 @@ def message(request, urlloc, userspace):
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
 			f  =  users.objects.filter(username=d.username)
 			aux.append(f)
-	#newmsg = messages()	
-	#newmsg.body = form.cleaned_data["username"]
-	#newmsg.toUser = username
-	#newmsg.msg_date = timezone.now()
-	return render(request, 'space/message.html', {'vuser':usee , 'last':compte , 't':urlloc , 'vuser2':aux })
+	if request.method == "POST":
+		form = message_forms(request.POST)
+		if form.is_valid():
+			newmsg = messages()	
+			newmsg.body = form.cleaned_data["msg"]
+			newmsg.toUser = users.objects.get(username= userspace) #to change for the correct user ! 
+			newmsg.msg_date = timezone.now()
+			newmsg.save()
+	else:
+		form = message_forms()
+	return render(request, 'space/message.html', {'form' :form,  'vuser':usee , 'last':compte , 't':urlloc , 'vuser2':aux })
 
 def logout(request):
 	request.session[0] = 'logout'
