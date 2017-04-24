@@ -53,7 +53,8 @@ def profil(request,urlloc, userspace):
 	usee = users.objects.get(username=userspace)
 	compte = users.objects.all()[users.objects.count()-1]
 	postt = post.objects.all().order_by('-post_date')
-	return render(request, 'space/profil.html', {'vuser':usee , 'last':compte , 't':urlloc , 'postt' : postt })
+	msgg = messages.objects.all()
+	return render(request, 'space/profil.html', {'vuser':usee ,'msg' : msgg , 'last':compte , 't':urlloc , 'postt' : postt })
 
 
 def new_post(request, urlloc, userspace):

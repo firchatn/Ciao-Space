@@ -26,18 +26,19 @@
 </ul>
 </div>
 </div>
+<!-- just for testing to change to other dessin -->
+{% csrf_token %}
+{{ form.as_p }}
  {% for k in vuser2 %} 
       {% for i in k %} 
-      <h3>{{ i.username }}</h3>
+      <h3>{{ i.username }}       <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> </button> </h3>
       {% block content %}
         <img src="{{ i.selfi.url }}" height="100" width="100" class="img-circle">
       {% endblock %}
-      <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> </button>
       {% endfor %}
       {% endfor %}
 </div>
-{% csrf_token %}
-{{ form.as_p }}
+
 </div>
 </form>
 </body>

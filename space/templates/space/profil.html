@@ -24,6 +24,15 @@
 </ul>
 </div>
 </div>
+<style type="text/css">
+  #message {
+      margin-left: 600px;
+      margin-top: -115px;
+  }
+  h2 {
+    color: red;
+  }
+</style>
   {% block content %}
     <img src="{{ vuser.selfi.url }}" height="100" width="100">
   {% endblock %}
@@ -38,6 +47,16 @@
   <strong> poster le : </strong>{{ i.post_date }}</p>
 {% endif   %}
 {% endfor %}
+<div id="message">
+<h2> MESSAGE</h2>
+{% for j in msg %}
+{% if i.toUser.username %}
+<strong>From :</strong>  
+ <strong> msg : </strong>{{ i.body }}</p>
+  <strong> time : </strong>{{ i.message_date }}</p>
+  {% endif %}
+{% endfor %}
+</div>
 </div>
 </body>
 </html>
