@@ -9,8 +9,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   {% load staticfiles %}
   <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
+<form role="form"  action="" method="post" enctype="multipart/form-data" >
 <div class="container">
 <div id="f" style=" text-align: center;">
 <div class="row">
@@ -25,15 +28,18 @@
 </div>
  {% for k in vuser2 %} 
       {% for i in k %} 
-      <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }} <i class="fa fa-envelope" aria-hidden="true"></i> </a></h3>
+      <h3>{{ i.username }}</h3>
       {% block content %}
         <img src="{{ i.selfi.url }}" height="100" width="100" class="img-circle">
       {% endblock %}
+      <input type="text" name="{{ i.username }}">
+      <button type="submit" ><i class="fa fa-envelope" aria-hidden="true"></i> </button>
       {% endfor %}
       {% endfor %}
 </div>
 
 
 </div>
+</form>
 </body>
 </html>
