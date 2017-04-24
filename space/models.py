@@ -20,6 +20,7 @@ class cheekin(models.Model):
 
 class messages(models.Model):
 	toUser = models.ForeignKey(users, on_delete=models.CASCADE)
+	fromUser = models.CharField(max_length=200)
 	body = models.CharField(max_length=2000)
 	msg_date = models.DateTimeField('date cheek', auto_now_add=True, auto_now=False)
 	def __str__(self):

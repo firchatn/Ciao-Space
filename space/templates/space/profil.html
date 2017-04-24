@@ -50,10 +50,10 @@
 <div id="message">
 <h2> MESSAGE</h2>
 {% for j in msg %}
-{% if i.toUser.username %}
-<strong>From :</strong>  
- <strong> msg : </strong>{{ i.body }}</p>
-  <strong> time : </strong>{{ i.message_date }}</p>
+{% if j.toUser.username == vuser.username %}
+<strong>From :</strong> {{ j.fromUser }}  
+ <strong> msg : </strong>{{ j.body }}</p>
+  <strong> time : </strong>{{ j.msg_date }}</p>
   {% endif %}
 {% endfor %}
 </div>

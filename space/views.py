@@ -53,7 +53,7 @@ def profil(request,urlloc, userspace):
 	usee = users.objects.get(username=userspace)
 	compte = users.objects.all()[users.objects.count()-1]
 	postt = post.objects.all().order_by('-post_date')
-	msgg = messages.objects.all()
+	msgg = messages.objects.all().order_by('-msg_date')
 	return render(request, 'space/profil.html', {'vuser':usee ,'msg' : msgg , 'last':compte , 't':urlloc , 'postt' : postt })
 
 
@@ -93,8 +93,13 @@ def message(request, urlloc, userspace):
 		if form.is_valid():
 			newmsg = messages()	
 			newmsg.body = form.cleaned_data["msg"]
-			newmsg.toUser = users.objects.get(username= userspace) #to change for the correct user ! 
+			for i in aux:
+				for j in i:
+					if j.username in request.POST:
+						to = request.POST[j.username]
+			newmsg.toUser = users.objects.get(username= to) #to change for the correct user ! 
 			newmsg.msg_date = timezone.now()
+			newmsg.fromUser = userspace
 			newmsg.save()
 	else:
 		form = message_forms()
