@@ -3,6 +3,7 @@ from singup.models import users
 from singup.forms import usersForms
 from space.forms import post_forms
 from space.models import post
+from space.models import messages
 from django.utils import timezone
 from space.models import cheekin
 from decimal import *
@@ -85,6 +86,10 @@ def message(request, urlloc, userspace):
 		if vx-0.2 < m < vx+0.2 and vy-0.2 < n < vy+0.2:
 			f  =  users.objects.filter(username=d.username)
 			aux.append(f)
+	#newmsg = messages()	
+	#newmsg.body = form.cleaned_data["username"]
+	#newmsg.toUser = username
+	#newmsg.msg_date = timezone.now()
 	return render(request, 'space/message.html', {'vuser':usee , 'last':compte , 't':urlloc , 'vuser2':aux })
 
 def logout(request):
