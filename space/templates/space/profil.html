@@ -27,7 +27,7 @@
 <style type="text/css">
   #message {
       margin-left: 600px;
-      margin-top: -115px;
+      margin-top: -225px;
   }
   h2 {
     color: red;
@@ -47,16 +47,21 @@
   <strong> poster le : </strong>{{ i.post_date }}</p>
 {% endif   %}
 {% endfor %}
+{% if last.username == vuser.username %}
 <div id="message">
 <h2> MESSAGE</h2>
 {% for j in msg %}
+
 {% if j.toUser.username == vuser.username %}
 <strong>From :</strong> {{ j.fromUser }}  
  <strong> msg : </strong>{{ j.body }}</p>
   <strong> time : </strong>{{ j.msg_date }}</p>
+  
   {% endif %}
 {% endfor %}
 </div>
+
+{% endif %}
 </div>
 </body>
 </html>
