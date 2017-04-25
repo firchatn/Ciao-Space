@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Ciao Space</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  {% load staticfiles %}
-  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Ciao Space</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<div class="container">
-<div id="f" style=" text-align: center;">
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-<ul class="nav nav-pills nav-stacked">
-  <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="#">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-</ul>
-</div>
-</div>
+    <div class="container">
+        <div id="f" style=" text-align: center;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="#">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
 
-<style>
-#box1 {
-    width: 320px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 5px;
-    margin-left: 400px;
-    text-align: center;
-    border-radius: 25px;
-    border-color: #FFE4C4;
-}
-label {
-    width: 320px;
-    padding: 0px;
-    margin: 0px;
-    text-align: center;
-}
-h3 {
-  color: #8B008B ;
-  background-color: #FFE4C4;
-  width: 320px;
-  text-align: center;
-  margin-left: 400px;
-  border-radius: 25px;
-  font-weight: bold;
-}
-#butPost {
-  border: 2px solid #a1a1a1;
-  border-radius: 50%;
-  background-color: #FF1493;
-  width: 100px;
-  height : 100px;
-  font-weight: bold;
+            <style>
+                #box1 {
+                    width: 320px;
+                    padding: 10px;
+                    border: 5px solid gray;
+                    margin: 5px;
+                    margin-left: 400px;
+                    text-align: center;
+                    border-radius: 25px;
+                    border-color: #FFE4C4;
+                }
+                
+                label {
+                    width: 320px;
+                    padding: 0px;
+                    margin: 0px;
+                    text-align: center;
+                }
+                
+                h3 {
+                    color: #8B008B;
+                    background-color: #FFE4C4;
+                    width: 320px;
+                    text-align: center;
+                    margin-left: 400px;
+                    border-radius: 25px;
+                    font-weight: bold;
+                }
+                
+                #butPost {
+                    border: 2px solid #a1a1a1;
+                    border-radius: 50%;
+                    background-color: #FF1493;
+                    width: 100px;
+                    height: 100px;
+                    font-weight: bold;
+                }
+            </style>
 
+            <form role="form" action="" method="post" enctype="multipart/form-data">
 
-}
-</style>
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" id="butPost">poster</button>
 
-<form role="form"  action="" method="post" enctype="multipart/form-data" >
+            </form>
+            <h3>POST</h3>
 
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit"  id ="butPost">poster</button>
-   
-</form>
-<h3>POST</h3>
-
-
-
-</div>
-{% for i in postt %}
-<div id ="box1">
-<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
-<strong>title :</strong> {{ i.title }} <br>
- <strong> about now : </strong>{{ i.aboutnow }}</p>
-  <strong> poster le : </strong>{{ i.post_date }}</p>
-  </div>
-{% endfor %}
-</div>
+        </div>
+        {% for i in postt %}
+        <div id="box1">
+            <p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
+                <strong>title :</strong> {{ i.title }}
+                <br>
+                <strong> about now : </strong>{{ i.aboutnow }}</p>
+            <strong> poster le : </strong>{{ i.post_date }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
+
 </html>

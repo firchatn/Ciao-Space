@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Ciao Space</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  {% load staticfiles %}
-  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Ciao Space</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<div class="container">
-<div id="f" style=" text-align: center;">
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-<ul class="nav nav-pills nav-stacked">
-  <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="#">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-</ul>
-</div>
-</div>
-<style type="text/css">
-  #message {
-      margin-left: 600px;
-      margin-top: -225px;
-  }
-  h2 {
-    color: red;
-  }
-</style>
-  {% block content %}
-    <img src="{{ vuser.selfi.url }}" height="100" width="100">
-  {% endblock %}
-<h3>{{ vuser.username }}</h3> 
-</div>
-<h2> POST</h2>
-{% for i in postt %}
-{% if i.username.username == vuser.username %}
-<!--<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a> -->
-<strong>title :</strong> {{ i.title }} 
- <strong> about now : </strong>{{ i.aboutnow }}</p>
-  <strong> poster le : </strong>{{ i.post_date }}</p>
-{% endif   %}
-{% endfor %}
-{% if last.username == vuser.username %}
-<div id="message">
-<h2> MESSAGE</h2>
-{% for j in msg %}
+    <div class="container">
+        <div id="f" style=" text-align: center;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="#">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <style type="text/css">
+                #message {
+                    margin-left: 600px;
+                    margin-top: -250px;
+                }
+                
+                h2 {
+                    color: red;
+                }
+            </style>
+            {% block content %}
+            <img src="{{ vuser.selfi.url }}" height="100" width="100"> {% endblock %}
+            <h3>{{ vuser.username }}</h3>
+        </div>
+        <div class="container">
+            <h2> POST</h2> {% for i in postt %} {% if i.username.username == vuser.username %}
+            <!--<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a> -->
+            <strong>title :</strong> {{ i.title }}
+            <strong> about now : </strong>{{ i.aboutnow }}</p>
+            <strong> poster le : </strong>{{ i.post_date }}</p>
+            {% endif %} {% endfor %} {% if last.username == vuser.username %}
+            <div id="message">
+                <div class="container">
+                </div>
+                <h2> MESSAGE</h2> {% for j in msg %} {% if j.toUser.username == vuser.username %}
+                <strong>From :</strong> {{ j.fromUser }}
+                <strong> msg : </strong>{{ j.body }}</p>
+                <strong> time : </strong>{{ j.msg_date }}</p>
 
-{% if j.toUser.username == vuser.username %}
-<strong>From :</strong> {{ j.fromUser }}  
- <strong> msg : </strong>{{ j.body }}</p>
-  <strong> time : </strong>{{ j.msg_date }}</p>
-  
-  {% endif %}
-{% endfor %}
-</div>
-
-{% endif %}
-</div>
+                {% endif %} {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </body>
+
 </html>

@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Ciao Space</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  {% load staticfiles %}
-  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Ciao Space</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body>
-<form role="form"  action="" method="post" enctype="multipart/form-data" >
-<div class="container">
-<div id="f" style=" text-align: center;">
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-<ul class="nav nav-pills nav-stacked">
-  <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="/space/{{ t }}/{{ last.username }}/">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="#">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
-  <li role="presentation"><a href="/space/{{ t }}/{{ last.username }}/post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-</ul>
-</div>
-</div>
-<!-- just for testing to change to other dessin -->
-{% csrf_token %}
-{{ form.as_p }}
- {% for k in vuser2 %} 
-      {% for i in k %} 
-      <h3>{{ i.username }}       <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> </button> </h3>
-      {% block content %}
-        <img src="{{ i.selfi.url }}" height="100" width="100" class="img-circle">
-      {% endblock %}
-      {% endfor %}
-      {% endfor %}
-</div>
 
-</div>
-</form>
+<body>
+    <form role="form" action="" method="post" enctype="multipart/form-data">
+        <div class="container">
+            <div id="f" style=" text-align: center;">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="active"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+                            <li role="presentation"><a href="/space/{{ t }}/{{ last.username }}/">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                            <li role="presentation"><a href="#">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+                            <li role="presentation"><a href="/space/{{ t }}/{{ last.username }}/post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- just for testing to change to other dessin -->
+                {% csrf_token %} {{ form.as_p }} {% for k in vuser2 %} {% for i in k %}
+                <h3>{{ i.username }}       <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> </button> </h3> {% block content %}
+                <img src="{{ i.selfi.url }}" height="100" width="100" class="img-circle"> {% endblock %} {% endfor %} {% endfor %}
+            </div>
+
+        </div>
+    </form>
 </body>
+
 </html>
