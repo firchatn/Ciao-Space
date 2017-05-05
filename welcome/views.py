@@ -19,5 +19,4 @@ def start(request, x):
 				'form': form_class, 'x' : x 
     })
 	else:
-		return render(request, 'welcome/home.html')
-		#to change return httpsreponse page error 404 !
+		return render(request, 'welcome/error404.html')
