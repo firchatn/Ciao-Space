@@ -30,7 +30,10 @@
             <div class="container">
                 {% for k in vuser %} {% for i in k %}
                 <h3><a href="/space/{{x}}/{{ i.username }}/">{{ i.username }} </a></h3> {% block content %}
-                <img src="{{ i.selfi.url }}" height="500" width="500"> {% endblock %}
+                {% if i.selfi %}
+                <img src="{{ i.selfi.url }}" height="500" width="500"> 
+                {% endif %}
+                {% endblock %}
                 <h6> {{ i.start_date }} </h6> {% endfor %} {% endfor %}
             </div>
         </div>
