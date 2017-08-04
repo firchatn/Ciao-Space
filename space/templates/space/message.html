@@ -19,11 +19,17 @@
                     margin-left: 35%;
 
                 }
+            
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 </style>
 </head>
 
 <body>
-    <form role="form" action="" method="post" enctype="multipart/form-data">
+    
         <div class="container">
             <div id="f" style=" text-align: center;">
                 <div class="row">
@@ -37,17 +43,37 @@
                     </div>
                 </div>
                 <!-- just for testing to change to other dessin -->
-                {% csrf_token %} {{ form.as_p }} {% for k in vuser2 %} {% for i in k %}
-                <h3>{{ i.username }}       <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> </button> </h3> {% block content %}
-                {% if i.selfi %}
-                <img src="{{ i.selfi.url }}" height="100" width="100" class="img-circle"> 
-                   {% endif %}
-                 {% endblock %} {% endfor %} {% endfor %}
-                   
-            </div>
+                
+                
 
-        </div>
-    </form>
+   
+
+<form role="form" action="" method="post" enctype="multipart/form-data">
+{% csrf_token %} {{ form.as_p }} 
+    <ul class="list-group" id="contact-list">
+    {% block content %}
+                    {% for k in vuser2 %} {% for i in k %}
+                    
+                    <li class="list-group-item">
+                        <div class="col-xs-12 col-sm-3">
+                        {% if i.selfi %}
+                            <img src="{{ i.selfi.url }}" alt="Scott Stevens" class="img-responsive img-circle" width="100" height="100"/>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="name">{{ i.username }}</span><br/>
+                            <br>
+
+                            <button type="submit" name="{{ i.username}}" value="{{i.username}}"><i class="fa fa-envelope" aria-hidden="true"></i> Send</button> </h3> 
+                            
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+{% endfor %} {% endfor %}
+{% endblock %} 
+                    </ul>
+                        </form>
+                             </div>
 </body>
 
 </html>
