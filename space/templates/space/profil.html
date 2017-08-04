@@ -11,6 +11,11 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        h2{
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,38 +35,79 @@
         <div class="span4 well">
             <div class="row">
             {% block content %}
-                <div class="span1"><a href="http://critterapp.pagodabox.com/others/admin" class="thumbnail"><img src="{{ vuser.selfi.url }}" alt=""></a></div>
+                <div class="span1"><img src="{{ vuser.selfi.url }}" alt=""></div>
                 <div class="span3">
-                    <p>admin</p>
+                    <p>user</p>
                     <p><strong>{{ vuser.username }}</strong></p>
-                    <span class=" badge badge-warning">8 messages</span> <span class=" badge badge-info">15 followers</span>
+                    <span class=" badge badge-warning">nb messages</span> <span class=" badge badge-info">nb posts</span>
                 </div>
             </div>
         </div>
     </div>
             
            {% endblock %}
-         
-        <div class="container">
-            <h2> POST</h2> {% for i in postt %} {% if i.username.username == vuser.username %}
-            <!--<p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a> -->
-            <strong>title :</strong> {{ i.title }}
-            <strong> about now : </strong>{{ i.aboutnow }}</p>
-            <strong> poster le : </strong>{{ i.post_date }}</p>
-            {% endif %} {% endfor %} {% if last.username == vuser.username %}
-            <div id="message">
-                <div class="container">
-                </div>
-                <h2> MESSAGE</h2> {% for j in msg %} {% if j.toUser.username == vuser.username %}
-                <strong>From :</strong> {{ j.fromUser }}
-                <strong> msg : </strong>{{ j.body }}</p>
-                <strong> time : </strong>{{ j.msg_date }}</p>
+       </div>  
+        
+            <h2> POST</h2>
 
-                {% endif %} {% endfor %}
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
+<div style="padding: 20px 20% 0 20%; background-color: Beige;">
+<div class="chat_list">
+    <ul class="list-group">
+        {% for i in postt %}
+             {% if i.username.username == vuser.username %}
+        <li class="list-group-item">
+            <div class="pull-left hidden-xs">
+                <div>
+                    <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">                    
+                </div>
             </div>
-        </div>
-        {% endif %}
-    </div>
+            <small class="pull-right text-muted">{{ i.post_date }}</small>
+            <div>
+                <small class="list-group-item-heading text-muted text-primary">{{ i.title }}</small>
+                <p class="list-group-item-text">
+                    {{ i.aboutnow }}.
+                </p>
+            </div>
+        </li>
+      {% endif %}
+            {% endfor %} 
+       
+    </ul>
+</div>
+</div>
+
+
+<h2> MESSAGE</h2>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
+<div style="padding: 20px 20% 0 20%; background-color: Beige;">
+<div class="chat_list">
+    <ul class="list-group">
+        {% if last.username == vuser.username %}
+        {% for j in msg %} {% if j.toUser.username == vuser.username %}
+        <li class="list-group-item">
+            <div class="pull-left hidden-xs">
+                <div>
+                    <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">                    
+                </div>
+            </div>
+            <small class="pull-right text-muted">{{ j.msg_date }}</small>
+            <div>
+                <small class="list-group-item-heading text-muted text-primary">{{ j.fromUser }}</small>
+                <p class="list-group-item-text">
+                    {{ j.body }}.
+                </p>
+            </div>
+        </li>
+      {% endif %} {% endfor %}
+      {% endif %}
+       
+    </ul>
+</div>
+</div>
+
 </body>
 
 </html>
