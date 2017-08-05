@@ -35,10 +35,11 @@
                 <div class="col-md-6 col-md-offset-3">
         <div class="span4 well">
             <div class="row">
-            
+               <div class="col-md-6 col-md-offset-3">
             {% block content %}
-                <div class="span1"><img src="{{ vuser.selfi.url }}" alt=""></div>
+                <div class="span1"><img class="img-responsive" src="{{ vuser.selfi.url }}" alt=""></div>
                 <div class="span3">
+                </div>
                     <p>user</p>
                     <p><strong>{{ vuser.username }}</strong></p>
                     <span class=" badge badge-warning"> {{ nbmsg }} messages</span> <span class=" badge badge-info"> {{ nbpost }} posts</span>
