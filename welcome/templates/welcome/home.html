@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
 </head>
 <body>
-<form id='f' action="" method="post">{% csrf_token %}
+<form id='f' action ="" method="post">{% csrf_token %}
 <div class="jumbotron text-center">
   <h1>Dating Time ! </h1>
   <p>Perfect place for making new friend !</p> 
@@ -26,6 +26,7 @@
 <script type="text/javascript">
    var ch = "";
    var res = "";
+
    function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -44,9 +45,11 @@
     document.getElementById("f").action = res;
     this.submit(); 
 });
-   
+
+
 
 
 </script>
+
 </body>
 </html>

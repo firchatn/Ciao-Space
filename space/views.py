@@ -35,8 +35,10 @@ def contrainer(request, urlloc):
 			cheekin_v.y = Decimal(locy)
 			cheekin_v.cheek_date = timezone.now()
 			cheekin_v.save()
-	compte = users.objects.all()[users.objects.count()-1]
-	cheekin_compte = cheekin.objects.all()[cheekin.objects.count()-1]
+			request.session['username'] = newuser.id
+	#compte = users.objects.all()[users.objects.count()-1]
+	compte = users.objects.get(id=request.session['username'])
+	cheekin_compte = cheekin.objects.get(username=compte)
 	cheekin_view = cheekin.objects.all().order_by('-cheek_date')
 	vx = float(cheekin_compte.x)
 	vy = float(cheekin_compte.y)
