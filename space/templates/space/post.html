@@ -11,21 +11,6 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-    <div class="container">
-        <div id="f" style=" text-align: center;">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" ><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
-                        <li role="presentation" class="active"><a href="#">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
 
             <style>
                 #box1 {
@@ -33,7 +18,7 @@
                     padding: 10px;
                     border: 5px solid gray;
                     margin: 5px;
-                    margin-left: 400px;
+                    margin-left: 100px;
                     text-align: center;
                     border-radius: 25px;
                     border-color: #FFE4C4;
@@ -51,7 +36,7 @@
                     background-color: #FFE4C4;
                     width: 320px;
                     text-align: center;
-                    margin-left: 400px;
+                    margin-left: 415px;
                     border-radius: 25px;
                     font-weight: bold;
                 }
@@ -69,7 +54,24 @@
                     margin-left: 35%;
 
                 }
+
             </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="f" style=" text-align: center;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" ><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/">{{ compte.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                        <li role="presentation"><a href="/space/{{t}}/{{ compte.username }}/message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+                        <li role="presentation" class="active"><a href="#">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
 
             <form role="form" action="" method="post" enctype="multipart/form-data">
 
@@ -77,9 +79,11 @@
                 <button type="submit" id="butPost">poster</button>
 
             </form>
+             </div>
             <h3>POST</h3>
-
-        </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="col-xs-12 col-sm-3">
+           
         {% for i in postt %}
         <div id="box1">
             <p><strong>Author :</strong> <a href="/space/{{t}}/{{ i.username }}/">{{ i.username }}</a>
@@ -89,6 +93,9 @@
             <strong> poster le : </strong>{{ i.post_date }}</p>
         </div>
         {% endfor %}
+    
     </div>
+    </div>
+
 </body>
 </html>
