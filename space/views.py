@@ -8,6 +8,7 @@ from space.models import messages
 from django.utils import timezone
 from space.models import cheekin
 from decimal import *
+from django.shortcuts import redirect
 locx = "" 
 locy = "" 
 vx = 0 

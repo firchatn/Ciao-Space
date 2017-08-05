@@ -7,4 +7,5 @@ urlpatterns = [
         url(r'^(\w+)/(\w+)/post/$', views.new_post, name='new_post'),
         url(r'^(\w+)/(\w+)/$', views.profil, name='profil'),
         url(r'^(\w+)/(\w+)/message/$', views.message, name='message'),
+        
 	]

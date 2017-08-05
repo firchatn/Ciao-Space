@@ -32,8 +32,10 @@
                 </div>
             </div>
                 <div class="row">
+                <div class="col-md-6 col-md-offset-3">
         <div class="span4 well">
             <div class="row">
+            
             {% block content %}
                 <div class="span1"><img src="{{ vuser.selfi.url }}" alt=""></div>
                 <div class="span3">
@@ -43,11 +45,12 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
             
            {% endblock %}
        </div>  
-        
+        <div class="col-md-6 col-md-offset-3">
 <h2> POST</h2>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
 <div style="padding: 20px 20% 0 20%; background-color: Beige;">
@@ -104,7 +107,7 @@
     </ul>
 </div>
 </div>
-
+</div>
 </body>
 
 </html>
