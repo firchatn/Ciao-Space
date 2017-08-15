@@ -6,7 +6,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^singup/', include('singup.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^space/', include('space.urls')),
     url(r'^', include('welcome.urls')),
 ]

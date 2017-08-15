@@ -1,56 +1,46 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'space/base.html' %}
+<!---->
+{% block full_content %}
+<form id='f' action="" method="post">{% csrf_token %}
+  <div class="jumbotron text-center">
+    <h1>Dating Time !</h1>
+    <p>Perfect place for making new friend !</p>
+  </div>
+  <div class="container">
+    <center> <button type="submit" class="btn btn-primary btn-lg" id='b1'>Start</button> </center>
 
-<head>
-  <meta charset="utf-8">
-  <title>Ciao Space</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
-</head>
+  </div>
 
-<body>
-  <form id='f' action="" method="post">{% csrf_token %}
-    <div class="jumbotron text-center">
-      <h1>Dating Time !</h1>
-      <p>Perfect place for making new friend !</p>
-    </div>
-    <div class="container">
-      <center> <button type="submit" class="btn btn-primary btn-lg" id='b1'>Start</button> </center>
+</form>
+{% endblock %}
 
-    </div>
+<!---->
+{% block bodybottom %}
+<script type="text/javascript">
+  var ch = "";
+  var res = "";
 
-  </form>
-
-  <script type="text/javascript">
-    var ch = "";
-    var res = "";
-
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        alert("Geolocation is not supported by this browser.");
-      }
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      alert("Geolocation is not supported by this browser.");
     }
+  }
 
-    function showPosition(position) {
-      ch = "" + position.coords.latitude +
-        "a" + position.coords.longitude + "/";
-      res = ch.replace(/\./g, 'p');
-    }
-    getLocation();
-    $('#f').submit(function(ev) {
-      ev.preventDefault();
-      document.getElementById("f").action = res;
-      this.submit();
-    });
+  function showPosition(position) {
+    ch = "" + position.coords.latitude +
+      "a" + position.coords.longitude + "/";
+    res = ch.replace(/\./g, 'p');
+  }
+document.addEventListener("DOMContentLoaded", function () {
+  getLocation();
+  $('#f').submit(function(ev) {
+    ev.preventDefault();
+    this.action = res;
+    this.submit();
+  });
+});
 
-  </script>
-
-</body>
-
-</html>
+</script>
+{% endblock %}

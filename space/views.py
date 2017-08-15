@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from singup.models import User
-from singup.forms import UserForm
+from accounts.models import User
+from accounts.forms import UserForm
 from .forms import PostForm
 from .forms import MessageForm
 from .models import Post, Message, Checkin

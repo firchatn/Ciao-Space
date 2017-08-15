@@ -1,0 +1,62 @@
+{% extends 'space/base.html' %}
+<!---->
+{% block full_content %}
+<!--
+    <style type="text/css">
+        p,
+        label {
+            text-align: center;
+        }
+        
+        #id_selfi,
+        #butSubmit {
+            margin-left: 600px;
+        }
+    </style>
+    <form role="form" action="/space/{{ x }}/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="butSubmit">Submit</button>
+    </form>
+-->
+
+
+<div id="login-overlay" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="myModalLabel">Signup To Ciao Space</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="well">
+            <form role="form" id="loginForm" method="POST" action="/space/{{ x }}/" novalidate="novalidate" enctype="multipart/form-data">
+              {% csrf_token %} {{ form.as_p }}
+
+              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+              <div class="checkbox">
+                <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember login
+                                  </label>
+                <p class="help-block">(if this is a private computer)</p>
+              </div>
+              <button type="submit" class="btn btn-success btn-block">S'inscrire</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <p class="lead">S'inscrire <span class="text-success">Free Signup</span></p>
+          <ul class="list-unstyled" style="line-height: 2">
+            <li><span class="fa fa-check text-success"></span> Free</li>
+            <li><span class="fa fa-check text-success"></span> Try it</li>
+            <li><span class="fa fa-check text-success"></span> </li>
+            <li><span class="fa fa-check text-success"></span> Meet</li>
+            <li><span class="fa fa-check text-success"></span> Magic ! <small>(Seulement les nouveaux clients)</small></li>
+            <li><a href="/read-more/"><u>Read more</u></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

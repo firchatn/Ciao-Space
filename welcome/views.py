@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from singup.forms import UserForm
+from django.shortcuts import render, redirect
+from accounts.forms import UserForm
 
 
-def startapp(request):
+def index(request):
     return render(request, 'welcome/home.html')
 
 
@@ -16,7 +16,7 @@ def start(request, x):
         else:
             request.session[0] = "login"
             form_class = UserForm()
-            return render(request, 'singup/singup.html', {
+            return render(request, 'accounts/singup.html', {
                 'form': form_class, 'x': x
             })
     else:
