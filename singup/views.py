@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from singup.models import users
-from singup.forms import usersForms
+from singup.models import User
 
 
 def add(request):

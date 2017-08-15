@@ -24,4 +24,4 @@ local_settings.py
 .email_password.txt
 .dev.txt
 .production.txt
-dating/settings_secret.py
+ciao_space/settings_secret.py

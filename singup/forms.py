@@ -1,20 +1,8 @@
 from django import forms
+from .models import User
 
 
-class usersForms(forms.Form):
-    name = forms.CharField(
-        max_length=10, required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    lastname = forms.CharField(
-        max_length=10, required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    username = forms.CharField(
-        max_length=10, required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(
-        label=u"mail", required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(required=False, widget=forms.PasswordInput(
-        attrs={'class': 'form-control', 'placeholder': 'Password'}))
-    selfi = forms.ImageField(required=False, widget=forms.FileInput(
-        attrs={'id': 'imgg', 'class': 'btn btn-default btn-file'}))
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('name', 'lastname', 'username', 'email', 'password', 'selfi')

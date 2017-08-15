@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from singup.forms import usersForms
+from singup.forms import UserForm
 
 
 def startapp(request):
@@ -15,7 +15,7 @@ def start(request, x):
             return render(request, 'space/index.html')
         else:
             request.session[0] = "login"
-            form_class = usersForms()
+            form_class = UserForm()
             return render(request, 'singup/singup.html', {
                 'form': form_class, 'x': x
             })

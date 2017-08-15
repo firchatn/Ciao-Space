@@ -1,11 +1,10 @@
 from django.contrib import admin
-from .models import post
-from .models import cheekin
-from .models import messages
+from .models import Post, Checkin, Message
 # Register your models here.
 
 
-class cheekinAdmin(admin.ModelAdmin):
+@admin.register(Checkin)
+class checkinAdmin(admin.ModelAdmin):
     list_display = ('username', 'x', 'y', 'cheek_date')
     list_filter = ('username', 'x')
     # date_hierarchy = 'date'
@@ -13,6 +12,5 @@ class cheekinAdmin(admin.ModelAdmin):
     search_fields = ('username', 'x')
 
 
-admin.site.register(cheekin, cheekinAdmin)
-admin.site.register(post)
-admin.site.register(messages)
+admin.site.register(Post)
+admin.site.register(Message)
