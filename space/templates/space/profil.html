@@ -2,113 +2,110 @@
 <html lang="en">
 
 <head>
-    <title>Ciao Space</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-        h2{
-            text-align: center;
-        }
-    </style>
+  <title>Ciao Space</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static '/bootstrap-3.3.7-dist/css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+    h2 {
+      text-align: center;
+    }
+
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div id="f" style=" text-align: center;">
+  <div class="container">
+    <div id="f" style=" text-align: center;">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
+            <li role="presentation" class="active"><a href="#">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+            <li role="presentation"><a href="message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
+            <li role="presentation"><a href="post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="span4 well">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" ><a href="/space/{{ t }}/">Space   <i class="fa fa-globe" aria-hidden="true"></i></a></li>
-                        <li role="presentation" class="active"><a href="#">{{ last.username }}   <i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-                        <li role="presentation"><a href="message/">Messages    <i class="fa fa-comments" aria-hidden="true"></i></a></li>
-                        <li role="presentation"><a href="post/">Post      <i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-                <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-        <div class="span4 well">
-            <div class="row">
-               <div class="col-md-6 col-md-offset-3">
-            {% block content %}
+              <div class="col-md-6 col-md-offset-3">
+                {% block content %}
                 <div class="span1"><img class="img-responsive" src="{{ vuser.selfi.url }}" alt=""></div>
                 <div class="span3">
                 </div>
-                    <p>user</p>
-                    <p><strong>{{ vuser.username }}</strong></p>
-                    <span class=" badge badge-warning"> {{ nbmsg }} messages</span> <span class=" badge badge-info"> {{ nbpost }} posts</span>
-                </div>
+                <p>user</p>
+                <p><strong>{{ vuser.username }}</strong></p>
+                <span class=" badge badge-warning"> {{ nbmsg }} messages</span> <span class=" badge badge-info"> {{ nbpost }} posts</span>
+              </div>
             </div>
+          </div>
         </div>
-        </div>
+      </div>
+
+      {% endblock %}
     </div>
-            
-           {% endblock %}
-       </div>  
-        <div class="col-md-6 col-md-offset-3">
-<h2> POST</h2>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
-<div style="padding: 20px 20% 0 20%; background-color: Beige;">
-<div class="chat_list">
-    <ul class="list-group">
-        {% for i in postt %}
-             {% if i.username.username == vuser.username %}
-        <li class="list-group-item">
-            <div class="pull-left hidden-xs">
+    <div class="col-md-6 col-md-offset-3">
+      <h2> POST</h2>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
+      <div style="padding: 20px 20% 0 20%; background-color: Beige;">
+        <div class="chat_list">
+          <ul class="list-group">
+            {% for i in postt %} {% if i.username.username == vuser.username %}
+            <li class="list-group-item">
+              <div class="pull-left hidden-xs">
                 <div>
-                    <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">                    
+                  <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">
                 </div>
-            </div>
-            <small class="pull-right text-muted">{{ i.post_date }}</small>
-            <div>
+              </div>
+              <small class="pull-right text-muted">{{ i.post_date }}</small>
+              <div>
                 <small class="list-group-item-heading text-muted text-primary">{{ i.title }}</small>
                 <p class="list-group-item-text">
-                    {{ i.aboutnow }}.
+                  {{ i.aboutnow }}.
                 </p>
-            </div>
-        </li>
-      {% endif %}
-            {% endfor %} 
-       
-    </ul>
-</div>
-</div>
+              </div>
+            </li>
+            {% endif %} {% endfor %}
+
+          </ul>
+        </div>
+      </div>
 
 
-<h2> MESSAGE</h2>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
-<div style="padding: 20px 20% 0 20%; background-color: Beige;">
-<div class="chat_list">
-    <ul class="list-group">
-        {% if last.username == vuser.username %}
-        {% for j in msg %} {% if j.toUser.username == vuser.username %}
-        <li class="list-group-item">
-            <div class="pull-left hidden-xs">
+      <h2> MESSAGE</h2>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
+      <div style="padding: 20px 20% 0 20%; background-color: Beige;">
+        <div class="chat_list">
+          <ul class="list-group">
+            {% if last.username == vuser.username %} {% for j in msg %} {% if j.toUser.username == vuser.username %}
+            <li class="list-group-item">
+              <div class="pull-left hidden-xs">
                 <div>
-                    <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">                    
+                  <img class="img-circle" title="User1" alt="User1" data-src="holder.js/40x40/lava">
                 </div>
-            </div>
-            <small class="pull-right text-muted">{{ j.msg_date }}</small>
-            <div>
+              </div>
+              <small class="pull-right text-muted">{{ j.msg_date }}</small>
+              <div>
                 <small class="list-group-item-heading text-muted text-primary">{{ j.fromUser }}</small>
                 <p class="list-group-item-text">
-                    {{ j.body }}.
+                  {{ j.body }}.
                 </p>
-            </div>
-        </li>
-      {% endif %} {% endfor %}
-      {% endif %}
-       
-    </ul>
-</div>
-</div>
-</div>
+              </div>
+            </li>
+            {% endif %} {% endfor %} {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
