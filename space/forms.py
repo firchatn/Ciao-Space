@@ -4,7 +4,7 @@ from .models import Post, Message
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model: Post
+        model = Post
         fields = ('title', 'aboutnow')
 
 
